@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'fio',
             'balance',
-            'status_id',
+            'active',
         ],
     ]) ?>
 

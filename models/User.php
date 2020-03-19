@@ -11,10 +11,9 @@ use Yii;
  * @property string|null $phone
  * @property string $fio
  * @property float|null $balance
- * @property int $status_id
+ * @property int|null $active
  *
  * @property Payment[] $payments
- * @property UserStatus $status
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -32,11 +31,10 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fio', 'status_id'], 'required'],
+            [['fio'], 'required'],
             [['balance'], 'number'],
-            [['status_id'], 'integer'],
+            [['active'], 'integer'],
             [['phone', 'fio'], 'string', 'max' => 255],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserStatus::className(), 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -50,7 +48,7 @@ class User extends \yii\db\ActiveRecord
             'phone' => 'Phone',
             'fio' => 'Fio',
             'balance' => 'Balance',
-            'status_id' => 'Status ID',
+            'active' => 'Active',
         ];
     }
 
@@ -62,16 +60,6 @@ class User extends \yii\db\ActiveRecord
     public function getPayments()
     {
         return $this->hasMany(Payment::className(), ['user_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Status]].
-     *
-     * @return \yii\db\ActiveQuery|UserStatusQuery
-     */
-    public function getStatus()
-    {
-        return $this->hasOne(UserStatus::className(), ['id' => 'status_id']);
     }
 
     /**

@@ -1,8 +1,11 @@
 <?php
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -12,31 +15,57 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+	<h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+	<p>
+    <?php
+    Modal::begin([
+      'size' => 'modal-lg',
+      'header' => '<h2>Регистрация</h2>',
+      'toggleButton' => [
+        'label' => 'Зарегистрировать',
+        'class' => 'btn btn-success',
+      ],
+    ])
+    ?>
+	<div id="modal-body">
+		<div class="user-form">
 
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+      <?php $form = ActiveForm::begin([
+        'enableAjaxValidation' => true,
+        'action' => ['user/register']
+      ]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+			<div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+			</div>
 
-            'id',
-            'phone',
-            'fio',
-            'balance',
-            'status_id',
+      <?php ActiveForm::end(); ?>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+		</div>
+	</div>
+  <?php Modal::end(); ?>
+	</p>
 
-    <?php Pjax::end(); ?>
+
+  <?php Pjax::begin(); ?>
+  <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+  <?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+      ['class' => 'yii\grid\SerialColumn'],
+
+      'phone',
+      'fio',
+      'balance',
+      'active:boolean',
+
+      ['class' => 'yii\grid\ActionColumn'],
+    ],
+  ]); ?>
+
+  <?php Pjax::end(); ?>
 
 </div>

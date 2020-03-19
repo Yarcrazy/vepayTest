@@ -17,7 +17,7 @@ class m200318_163437_create_user_table extends Migration
       'phone' => $this->string(),
       'fio' => $this->string()->notNull(),
       'balance' => $this->float()->defaultValue(0),
-      'status_id' => $this->integer()->notNull(),
+      'active' => $this->boolean()->defaultValue(1),
     ]);
   }
 
