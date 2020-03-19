@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'user_id',
             'sum',
-            'status_id',
+            'active',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

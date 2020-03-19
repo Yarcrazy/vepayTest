@@ -11,9 +11,8 @@ use Yii;
  * @property string|null $date
  * @property int $user_id
  * @property float|null $sum
- * @property int $status_id
+ * @property int|null $active
  *
- * @property PaymentStatus $status
  * @property User $user
  */
 class Payment extends \yii\db\ActiveRecord
@@ -33,10 +32,9 @@ class Payment extends \yii\db\ActiveRecord
     {
         return [
             [['date'], 'safe'],
-            [['user_id', 'status_id'], 'required'],
-            [['user_id', 'status_id'], 'integer'],
+            [['user_id'], 'required'],
+            [['user_id', 'active'], 'integer'],
             [['sum'], 'number'],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => PaymentStatus::className(), 'targetAttribute' => ['status_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -51,18 +49,8 @@ class Payment extends \yii\db\ActiveRecord
             'date' => 'Date',
             'user_id' => 'User ID',
             'sum' => 'Sum',
-            'status_id' => 'Status ID',
+            'active' => 'Active',
         ];
-    }
-
-    /**
-     * Gets query for [[Status]].
-     *
-     * @return \yii\db\ActiveQuery|PaymentStatusQuery
-     */
-    public function getStatus()
-    {
-        return $this->hasOne(PaymentStatus::className(), ['id' => 'status_id']);
     }
 
     /**

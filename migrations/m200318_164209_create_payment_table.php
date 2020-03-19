@@ -17,7 +17,7 @@ class m200318_164209_create_payment_table extends Migration
       'date' => $this->dateTime()->defaultValue(date("Y-m-d H:i:s", time())),
       'user_id' => $this->integer()->notNull(),
       'sum' => $this->float()->defaultValue(0),
-      'status_id' => $this->integer()->notNull(),
+      'active' => $this->boolean()->defaultValue(1),
     ]);
   }
 

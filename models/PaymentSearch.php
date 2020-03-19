@@ -17,7 +17,7 @@ class PaymentSearch extends Payment
     public function rules()
     {
         return [
-            [['id', 'user_id', 'status_id'], 'integer'],
+            [['id', 'user_id', 'active'], 'integer'],
             [['date'], 'safe'],
             [['sum'], 'number'],
         ];
@@ -63,7 +63,7 @@ class PaymentSearch extends Payment
             'date' => $this->date,
             'user_id' => $this->user_id,
             'sum' => $this->sum,
-            'status_id' => $this->status_id,
+            'active' => $this->active,
         ]);
 
         return $dataProvider;
