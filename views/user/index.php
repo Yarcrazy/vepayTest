@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model \app\models\User */
 
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,10 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="modal-body">
 		<div class="user-form">
 
-      <?php $form = ActiveForm::begin([
-        'enableAjaxValidation' => true,
-        'action' => ['user/register']
-      ]); ?>
+      <?php $form = ActiveForm::begin(); ?>
+
+      <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+      <?= $form->field($model, 'fio')->textInput(['maxlength' => true]) ?>
 
 			<div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -60,9 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
       'phone',
       'fio',
       'balance',
-      'active:boolean',
+      'active',
 
-      ['class' => 'yii\grid\ActionColumn'],
     ],
   ]); ?>
 

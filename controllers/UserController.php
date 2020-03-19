@@ -38,10 +38,16 @@ class UserController extends Controller
   {
     $searchModel = new UserSearch();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $model = new User();
+
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+      return $this->redirect(['view', 'id' => $model->id]);
+    }
 
     return $this->render('index', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
+      'model' => $model,
     ]);
   }
 
@@ -52,6 +58,19 @@ class UserController extends Controller
    * @throws NotFoundHttpException if the model cannot be found
    */
   public function actionView($id)
+  {
+    return $this->render('view', [
+      'model' => $this->findModel($id),
+    ]);
+  }
+
+  /**
+   * Change active status a single User model.
+   * @param integer $id
+   * @return mixed
+   * @throws NotFoundHttpException if the model cannot be found
+   */
+  public function actionActive($id)
   {
     return $this->render('view', [
       'model' => $this->findModel($id),
@@ -75,16 +94,6 @@ class UserController extends Controller
 //            'model' => $model,
 //        ]);
 //    }
-
-//  public function actionRegister()
-//  {
-//    if (Yii::$app->request->isAjax) {
-//      $model = new User();
-//      if ($model->load(Yii::$app->request->post())) {
-//
-//      }
-//    }
-//  }
 
   /**
    * Updates an existing User model.
