@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Class m200318_170950_create_foreign_key_payments_payments_status
+ * Class m200318_170950_create_foreign_key_payment_paymentStatus
  */
-class m200318_170950_create_foreign_key_payments_payments_status extends Migration
+class m200318_170950_create_foreign_key_payment_paymentStatus extends Migration
 {
   /**
    * {@inheritdoc}
    */
   public function safeUp()
   {
-    $this->addForeignKey('fk_payments_payments_status', 'payments', ['status_id'], 'payments_status', ['id']);
+    $this->addForeignKey('fk_payment_paymentStatus', 'payment', ['status_id'], 'paymentStatus', ['id']);
   }
 
   /**
@@ -20,7 +20,7 @@ class m200318_170950_create_foreign_key_payments_payments_status extends Migrati
    */
   public function safeDown()
   {
-    $this->dropForeignKey('fk_payments_payments_status', 'payments');
+    $this->dropForeignKey('fk_payment_paymentStatus', 'payment');
   }
 
   /*

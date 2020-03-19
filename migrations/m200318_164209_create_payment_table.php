@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%payments}}`.
+ * Handles the creation of table `{{%payment}}`.
  */
-class m200318_164209_create_payments_table extends Migration
+class m200318_164209_create_payment_table extends Migration
 {
   /**
    * {@inheritdoc}
    */
   public function safeUp()
   {
-    $this->createTable('{{%payments}}', [
+    $this->createTable('{{%payment}}', [
       'id' => $this->primaryKey(),
       'date' => $this->dateTime()->defaultValue(date("Y-m-d H:i:s", time())),
       'user_id' => $this->integer()->notNull(),
@@ -26,6 +26,6 @@ class m200318_164209_create_payments_table extends Migration
    */
   public function safeDown()
   {
-    $this->dropTable('{{%payments}}');
+    $this->dropTable('{{%payment}}');
   }
 }

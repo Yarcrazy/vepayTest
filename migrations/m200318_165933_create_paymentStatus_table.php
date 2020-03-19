@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%users_status}}`.
+ * Handles the creation of table `{{%paymentStatus}}`.
  */
-class m200318_165623_create_users_status_table extends Migration
+class m200318_165933_create_paymentStatus_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%users_status}}', [
+        $this->createTable('{{%paymentStatus}}', [
             'id' => $this->primaryKey(),
             'status' => $this->string()->notNull(),
         ]);
@@ -23,6 +23,6 @@ class m200318_165623_create_users_status_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%users_status}}');
+        $this->dropTable('{{%paymentStatus}}');
     }
 }
