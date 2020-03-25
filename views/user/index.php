@@ -59,21 +59,24 @@ UserAsset::register($this);
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
-      ['class' => 'yii\grid\SerialColumn'],
-
-      'phone',
-      'fio',
       [
-      	'attribute' => 'balance',
-//        'format' => 'html',
-//        'value' => function ($model, $key, $index, $column) {
-//          return Html::tag('span', $model->balance, [
-//            'class' => 'td-balance-'.$model->id,
-//          ]);
-//        }
+        'attribute' => 'id',
+        'label' => 'Идентификатор',
+      ],
+      [
+        'attribute' => 'phone',
+        'label' => 'Телефон',
+      ],
+      [
+        'attribute' => 'fio',
+        'label' => 'ФИО',
+      ],
+      [
+        'attribute' => 'balance',
+        'label' => 'Баланс',
       ],
 
-      ['label' => 'Status',
+      ['label' => 'Статус',
         'attribute' => 'active',
         'format' => 'raw',
         'value' => function ($model, $key, $index, $column) {
