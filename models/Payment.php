@@ -19,6 +19,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class Payment extends \yii\db\ActiveRecord
 {
+
+  const ACTIVE = '1';
+  const DISABLE = '0';
+
   /**
    * {@inheritdoc}
    */

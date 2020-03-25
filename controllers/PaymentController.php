@@ -27,7 +27,7 @@ class PaymentController extends Controller
       'verbs' => [
         'class' => VerbFilter::className(),
         'actions' => [
-          'delete' => ['POST'],
+          //'delete' => ['POST'],
         ],
       ],
     ];
@@ -121,8 +121,7 @@ class PaymentController extends Controller
    * @return mixed
    * @throws NotFoundHttpException if the model cannot be found
    */
-  public
-  function actionUpdate($id)
+  public function actionUpdate($id)
   {
     $model = $this->findModel($id);
 
@@ -142,11 +141,17 @@ class PaymentController extends Controller
    * @return mixed
    * @throws NotFoundHttpException if the model cannot be found
    */
-  public
-  function actionDelete($id)
+  public function actionDelete($id)
   {
-    $this->findModel($id)->delete();
-
+    $model = $this->findModel($id);
+    $model->active = Payment::DISABLE;
+    if ($model->save()) {
+      $balance = $model->user->balance - $model->sum;
+      $user = User::findOne($model->user_id);
+      $user->balance = $balance;
+      $user->save();
+      Yii::$app->session->setFlash('success', 'Платеж отменен!');
+    }
     return $this->redirect(['index']);
   }
 
