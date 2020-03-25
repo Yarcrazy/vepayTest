@@ -9,10 +9,10 @@ namespace app\models;
  */
 class PaymentQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function byActive()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['active' => '1']);
+    }
 
     /**
      * {@inheritdoc}

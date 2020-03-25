@@ -42,6 +42,8 @@ class PaymentSearch extends Payment
     {
         $query = Payment::find();
 
+        $query->byActive();
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
