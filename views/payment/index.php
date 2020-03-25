@@ -28,10 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
       ['attribute' => 'created_at',
 				'label' => 'Дата, время',
-				'format' => 'datetime'],
+				'format' => 'datetime',
+        'footer' => 'Итого:'],
       ['attribute' => 'user.fio',
         'label' => 'Пользователь',],
-      ['attribute' => 'sum',
+      ['class' => 'app\components\NumberColumn',
+      	'attribute' => 'sum',
         'label' => 'Сумма',],
 
       ['class' => 'yii\grid\ActionColumn',
@@ -46,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
           ],
 			],
     ],
+    'showFooter' => true,
   ]); ?>
 
   <?php Pjax::end(); ?>
