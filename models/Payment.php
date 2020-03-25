@@ -46,10 +46,10 @@ class Payment extends \yii\db\ActiveRecord
     return [
       [['sum'], 'required', 'message' => 'Введите сумму!'],
       [['user_id'], 'required', 'message' => 'Введите идентификатор пользователя или телефон!'],
-      [['created_at', 'updated_at', 'user_id', 'active'], 'integer'],
+      [['created_at', 'updated_at', 'active'], 'integer'],
       [['user_id'], 'integer', 'message' => 'Идентификатор пользователя или телефон должны быть целым числом!'],
       [['sum'], 'double', 'message' => 'Сумма должна быть числом!'],
-      [['sum'], 'compare', 'compareValue' => 0, 'operator' => '>'],
+      [['sum'], 'compare', 'compareValue' => 0, 'operator' => '>', 'message' => 'Сумма должна быть больше нуля!'],
       [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
     ];
   }
