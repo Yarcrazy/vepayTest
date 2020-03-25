@@ -20,13 +20,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'date') ?>
+    <?= $form->field($model, 'created_at') ?>
+
+    <?= $form->field($model, 'updated_at') ?>
 
     <?= $form->field($model, 'user_id') ?>
 
     <?= $form->field($model, 'sum') ?>
 
-    <?= $form->field($model, 'active') ?>
+    <?php // echo $form->field($model, 'active') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

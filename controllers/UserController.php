@@ -72,9 +72,12 @@ class UserController extends Controller
    */
   public function actionActive($id)
   {
-    return $this->render('view', [
-      'model' => $this->findModel($id),
-    ]);
+    if (Yii::$app->request->isAjax) {
+      $model = User::findOne($id);
+      $model->active = !$model->active;
+      $model->save(false);
+      return $model->active;
+    }
   }
 
   /**

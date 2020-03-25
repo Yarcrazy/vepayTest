@@ -32,7 +32,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['fio'], 'required'],
-            [['balance'], 'number'],
+            [['balance'], 'double'],
             [['active'], 'integer'],
             [['phone', 'fio'], 'string', 'max' => 255],
         ];

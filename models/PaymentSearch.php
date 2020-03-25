@@ -17,8 +17,7 @@ class PaymentSearch extends Payment
     public function rules()
     {
         return [
-            [['id', 'user_id', 'active'], 'integer'],
-            [['date'], 'safe'],
+            [['id', 'created_at', 'updated_at', 'user_id', 'active'], 'integer'],
             [['sum'], 'number'],
         ];
     }
@@ -60,7 +59,8 @@ class PaymentSearch extends Payment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'user_id' => $this->user_id,
             'sum' => $this->sum,
             'active' => $this->active,
